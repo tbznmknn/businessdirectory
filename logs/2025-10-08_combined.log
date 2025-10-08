@@ -19,3 +19,71 @@
 {"level":"info","message":"GET /api/v1/health 200 - 0.385 ms - IP: ::1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0 Body: {}","timestamp":"2025-10-08T20:52:08.026+08:00","userId":"system"}
 {"level":"info","message":"GET /api/v1/health 200 - 0.456 ms - IP: ::1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0 Body: {}","timestamp":"2025-10-08T20:52:08.277+08:00","userId":"system"}
 {"level":"info","message":"GET /api/v1/health 200 - 0.222 ms - IP: ::1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0 Body: {}","timestamp":"2025-10-08T20:52:08.474+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T20:57:53.157+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T20:57:53.158+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T20:57:53.158+08:00","userId":"system"}
+{"level":"error","message":"Error: Route /api/v1 not found\n    at D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\apps\\api\\dist\\main.js:67:14\n    at Layer.handle [as handle_request] (D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at next (D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\node_modules\\express\\lib\\router\\route.js:145:7)\n    at next (D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\node_modules\\express\\lib\\router\\route.js:145:7)\n    at next (D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\node_modules\\express\\lib\\router\\route.js:145:7)\n    at next (D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\node_modules\\express\\lib\\router\\route.js:145:7)\n    at next (D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\node_modules\\express\\lib\\router\\route.js:145:7)\n    at next (D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\node_modules\\express\\lib\\router\\route.js:145:7)\n    at Route.dispatch (D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\node_modules\\express\\lib\\router\\route.js:119:3)","timestamp":"2025-10-08T20:58:10.634+08:00","userId":"system"}
+{"level":"info","message":"GET /api/v1 404 - 3.899 ms - IP: ::1 - User-Agent: PostmanRuntime/7.48.0 Body: {}","timestamp":"2025-10-08T20:58:10.637+08:00","userId":"system"}
+{"level":"info","message":"GET /api/v1/health 200 - 0.461 ms - IP: ::1 - User-Agent: PostmanRuntime/7.48.0 Body: {}","timestamp":"2025-10-08T20:58:19.114+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T20:59:34.004+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T20:59:34.004+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T20:59:34.004+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:00:29.578+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:00:29.580+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:00:29.580+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:00:34.039+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:00:34.040+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:00:34.040+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:00:47.655+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:00:47.656+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:00:47.656+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:00:52.383+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:00:52.384+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:00:52.384+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:01:02.082+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:01:02.083+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:01:02.083+08:00","userId":"system"}
+{"level":"info","message":"Received SIGINT. Starting graceful shutdown...","timestamp":"2025-10-08T21:26:05.525+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:29:18.730+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:29:18.731+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:29:18.731+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:30:38.362+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:30:38.362+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:30:38.363+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:38:02.114+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:38:02.115+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:38:02.115+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:38:26.099+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:38:26.100+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:38:26.100+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:38:47.150+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:38:47.150+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:38:47.151+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:39:05.699+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:39:05.700+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:39:05.700+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:39:20.339+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:39:20.340+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:39:20.340+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:39:52.243+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:39:52.244+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:39:52.244+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:40:01.192+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:40:01.194+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:40:01.194+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:40:12.440+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:40:12.441+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:40:12.441+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:40:22.605+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:40:22.606+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:40:22.606+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:41:49.722+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:41:49.723+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:41:49.723+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:50:38.422+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:50:38.423+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:50:38.424+08:00","userId":"system"}
+{"level":"error","message":"Error: listen EADDRINUSE: address already in use :::3333\n    at Server.setupListenHandle [as _listen2] (node:net:1939:16)\n    at listenInCluster (node:net:1996:12)\n    at Server.listen (node:net:2101:7)\n    at Function.listen (D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\node_modules\\express\\lib\\application.js:635:24)\n    at D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\apps\\api\\dist\\main.js:2170:20\n    at D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\apps\\api\\dist\\main.js:2194:3\n    at Object.<anonymous> (D:\\Radnaabazar Workspace\\Side Projects\\businessdirectory\\apps\\api\\dist\\main.js:2196:12)\n    at Module._compile (node:internal/modules/cjs/loader:1734:14)\n    at Object..js (node:internal/modules/cjs/loader:1899:10)\n    at Module.load (node:internal/modules/cjs/loader:1469:32)","timestamp":"2025-10-08T21:50:57.394+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:51:19.765+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:51:19.766+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:51:19.766+08:00","userId":"system"}

@@ -1,0 +1,18 @@
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  override existing env vars with { override: true }
+❌ Server error: Error: listen EADDRINUSE: address already in use :::3333
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (D:\Radnaabazar Workspace\Side Projects\businessdirectory\node_modules\express\lib\application.js:635:24)
+    at D:\Radnaabazar Workspace\Side Projects\businessdirectory\apps\api\dist\main.js:2170:20
+    at D:\Radnaabazar Workspace\Side Projects\businessdirectory\apps\api\dist\main.js:2194:3
+    at Object.<anonymous> (D:\Radnaabazar Workspace\Side Projects\businessdirectory\apps\api\dist\main.js:2196:12)
+    at Module._compile (node:internal/modules/cjs/loader:1734:14)
+    at Object..js (node:internal/modules/cjs/loader:1899:10)
+    at Module.load (node:internal/modules/cjs/loader:1469:32) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 3333
+}

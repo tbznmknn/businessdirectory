@@ -15,7 +15,7 @@ class ReviewRoute extends BaseRoute<Reviews, CreateReviewDTO, UpdateReviewDTO> {
     super(new ReviewController(), createReviewSchema, updateReviewSchema);
   }
 
-  protected initializeRoutes(): void {
+  protected override initializeRoutes(): void {
     // Public routes
     this.router.get('/', this.controller.getAll);
     this.router.get('/:id', this.controller.getById);

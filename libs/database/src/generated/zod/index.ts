@@ -16,7 +16,9 @@ export const UserScalarFieldEnumSchema = z.enum(['id','email','firstName','lastN
 
 export const VerificationTokenScalarFieldEnumSchema = z.enum(['id','email','token','expires','createdAt','action']);
 
-export const BusinessCategoryScalarFieldEnumSchema = z.enum(['id','name','description','createdAt','updatedAt']);
+export const BusinessParentCategoryScalarFieldEnumSchema = z.enum(['id','name','description','createdAt','updatedAt']);
+
+export const BusinessCategoryScalarFieldEnumSchema = z.enum(['id','name','description','createdAt','updatedAt','parentCategoryId']);
 
 export const BusinessScalarFieldEnumSchema = z.enum(['id','name','email','photo','link','summary','richContent','isActive','isInsideMall','description','createdAt','updatedAt','categoryId']);
 
@@ -35,6 +37,8 @@ export const NullsOrderSchema = z.enum(['first','last']);
 export const UserOrderByRelevanceFieldEnumSchema = z.enum(['email','firstName','lastName','phone','hashedPassword']);
 
 export const VerificationTokenOrderByRelevanceFieldEnumSchema = z.enum(['email','token']);
+
+export const BusinessParentCategoryOrderByRelevanceFieldEnumSchema = z.enum(['name','description']);
 
 export const BusinessCategoryOrderByRelevanceFieldEnumSchema = z.enum(['name','description']);
 
@@ -92,6 +96,20 @@ export const VerificationTokenSchema = z.object({
 export type VerificationToken = z.infer<typeof VerificationTokenSchema>
 
 /////////////////////////////////////////
+// BUSINESS PARENT CATEGORY SCHEMA
+/////////////////////////////////////////
+
+export const BusinessParentCategorySchema = z.object({
+  id: z.number().int(),
+  name: z.string(),
+  description: z.string(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
+})
+
+export type BusinessParentCategory = z.infer<typeof BusinessParentCategorySchema>
+
+/////////////////////////////////////////
 // BUSINESS CATEGORY SCHEMA
 /////////////////////////////////////////
 
@@ -101,6 +119,7 @@ export const BusinessCategorySchema = z.object({
   description: z.string(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
+  parentCategoryId: z.number().int(),
 })
 
 export type BusinessCategory = z.infer<typeof BusinessCategorySchema>

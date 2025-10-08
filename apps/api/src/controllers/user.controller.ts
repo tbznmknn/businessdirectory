@@ -24,7 +24,7 @@ export class UserController extends BaseController<
     this.userService = service;
   }
 
-  protected getFilterParams(req: Request) {
+  protected override getFilterParams(req: Request) {
     const filters = QueryBuilder.getFilters(req, [
       'email',
       'role',

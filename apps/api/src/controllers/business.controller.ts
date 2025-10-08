@@ -17,7 +17,7 @@ export class BusinessController extends BaseController<
     super(new BusinessService(), 'Business');
   }
 
-  protected getFilterParams(req: Request) {
+  protected override getFilterParams(req: Request) {
     const filters = QueryBuilder.getFilters(req, [
       'name',
       'email',

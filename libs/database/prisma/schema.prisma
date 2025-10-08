@@ -53,14 +53,26 @@ model VerificationToken {
   @@unique([email, action])
 }
 
+model BusinessParentCategory {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+  categories BusinessCategory[]
+}
+
 model BusinessCategory {
   id          Int    @id @default(autoincrement())
   name        String
   description String
 
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-  businesses Business[]
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
+  businesses       Business[]
+  parentCategoryId Int
+  parentCategory   BusinessParentCategory @relation(fields: [parentCategoryId], references: [id])
 }
 
 model Business {

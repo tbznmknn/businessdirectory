@@ -4,17 +4,66 @@ import { randomInt, randomChoice, randomFloat } from '../utils/random';
 
 const prisma = new PrismaClient();
 
+const parentCategories = [
+  {
+    name: 'Food & Dining',
+    description: 'All food and dining related businesses',
+  },
+  {
+    name: 'Retail & Shopping',
+    description: 'Shopping and retail establishments',
+  },
+  { name: 'Health & Medical', description: 'Healthcare and medical services' },
+  {
+    name: 'Entertainment & Leisure',
+    description: 'Entertainment and recreational activities',
+  },
+  {
+    name: 'Professional Services',
+    description: 'Business and professional services',
+  },
+];
+
 const categories = [
-  { name: 'Restaurant', description: 'Food and dining establishments' },
-  { name: 'Shopping', description: 'Retail stores and shopping centers' },
-  { name: 'Healthcare', description: 'Medical and health services' },
-  { name: 'Entertainment', description: 'Movies, games, and entertainment' },
-  { name: 'Education', description: 'Schools and educational institutions' },
-  { name: 'Technology', description: 'Tech companies and IT services' },
-  { name: 'Automotive', description: 'Car services and dealerships' },
+  {
+    name: 'Restaurant',
+    description: 'Food and dining establishments',
+    parentIndex: 0,
+  },
+  {
+    name: 'Shopping',
+    description: 'Retail stores and shopping centers',
+    parentIndex: 1,
+  },
+  {
+    name: 'Healthcare',
+    description: 'Medical and health services',
+    parentIndex: 2,
+  },
+  {
+    name: 'Entertainment',
+    description: 'Movies, games, and entertainment',
+    parentIndex: 3,
+  },
+  {
+    name: 'Education',
+    description: 'Schools and educational institutions',
+    parentIndex: 4,
+  },
+  {
+    name: 'Technology',
+    description: 'Tech companies and IT services',
+    parentIndex: 4,
+  },
+  {
+    name: 'Automotive',
+    description: 'Car services and dealerships',
+    parentIndex: 4,
+  },
   {
     name: 'Beauty & Wellness',
     description: 'Salons, spas, and wellness centers',
+    parentIndex: 2,
   },
 ];
 
@@ -51,6 +100,7 @@ async function clearDatabase() {
   await prisma.businessAddress.deleteMany();
   await prisma.business.deleteMany();
   await prisma.businessCategory.deleteMany();
+  await prisma.businessParentCategory.deleteMany();
   await prisma.verificationToken.deleteMany();
   await prisma.user.deleteMany();
 
@@ -101,11 +151,34 @@ async function seedUsers() {
   return users;
 }
 
-async function seedCategories() {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function seedParentCategories(): Promise<any[]> {
+  console.log('📂 Seeding business parent categories...');
+
+  const createdParentCategories = await Promise.all(
+    parentCategories.map((cat) =>
+      prisma.businessParentCategory.create({ data: cat })
+    )
+  );
+
+  console.log(`✅ Created ${createdParentCategories.length} parent categories`);
+  return createdParentCategories;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function seedCategories(parentCats: any[]) {
   console.log('🏷️  Seeding business categories...');
 
   const createdCategories = await Promise.all(
-    categories.map((cat) => prisma.businessCategory.create({ data: cat }))
+    categories.map((cat) =>
+      prisma.businessCategory.create({
+        data: {
+          name: cat.name,
+          description: cat.description,
+          parentCategoryId: parentCats[cat.parentIndex].id,
+        },
+      })
+    )
   );
 
   console.log(`✅ Created ${createdCategories.length} categories`);
@@ -236,7 +309,8 @@ export async function seed() {
     await clearDatabase();
 
     const users = await seedUsers();
-    const categories = await seedCategories();
+    const parentCategories = await seedParentCategories();
+    const categories = await seedCategories(parentCategories);
     const businesses = await seedBusinesses(categories);
     await seedBusinessAddresses(businesses);
     await seedReviews(businesses, users);

@@ -18,7 +18,7 @@ class UserRoute extends BaseRoute<User, CreateUserDTO, UpdateUserDTO> {
     this.addAuthRoutes(controller);
   }
 
-  protected initializeRoutes(): void {
+  protected override initializeRoutes(): void {
     // Public routes
     this.router.post(
       '/register',

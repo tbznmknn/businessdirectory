@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import userRoutes from './user.route';
+import businessParentCategoryRoutes from './business-parent-category.route';
 import businessCategoryRoutes from './business-category.route';
 import businessRoutes from './business.route';
 import businessAddressRoutes from './business-address.route';
@@ -14,6 +15,7 @@ router.get('/health', (req, res) => {
 
 // API Routes
 router.use('/users', userRoutes);
+router.use('/business-parent-categories', businessParentCategoryRoutes);
 router.use('/business-categories', businessCategoryRoutes);
 router.use('/businesses', businessRoutes);
 router.use('/business-addresses', businessAddressRoutes);

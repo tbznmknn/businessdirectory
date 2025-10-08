@@ -21,7 +21,7 @@ export class ReviewController extends BaseController<
     this.reviewService = service;
   }
 
-  protected getFilterParams(req: Request) {
+  protected override getFilterParams(req: Request) {
     const filters = QueryBuilder.getFilters(req, [
       'businessId',
       'userId',

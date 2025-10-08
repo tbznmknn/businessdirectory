@@ -17,7 +17,7 @@ export class BusinessAddressController extends BaseController<
     super(new BusinessAddressService(), 'Business Address');
   }
 
-  protected getFilterParams(req: Request) {
+  protected override getFilterParams(req: Request) {
     const filters = QueryBuilder.getFilters(req, ['businessId', 'address']);
     const search = QueryBuilder.getSearch(req, ['address']);
 
