@@ -1,9 +1,12 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, RequestHandler } from 'express';
 
 /**
  * Catch async errors and pass them to Express error handler
  */
-export const catchAsync = (fn: Function) => {
+export const catchAsync = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<any>
+): RequestHandler => {
   return (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };
@@ -14,8 +17,8 @@ export const catchAsync = (fn: Function) => {
  */
 export const catchAsyncAuth = <T extends Request = Request>(
   fn: (req: T, res: Response, next: NextFunction) => Promise<void>
-) => {
+): RequestHandler => {
   return (req: T, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };
-}; 
+};
