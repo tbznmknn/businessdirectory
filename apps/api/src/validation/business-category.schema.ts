@@ -1,25 +1,23 @@
 import { z } from 'zod';
+import {
+  CreateBusinessCategorySchema,
+  UpdateBusinessCategorySchema,
+  CreateBusinessCategoryInput,
+  UpdateBusinessCategoryInput,
+} from '@businessdirectory/database';
 
+// API-specific schemas with body/params wrappers
 export const createBusinessCategorySchema = z.object({
-  body: z.object({
-    name: z.string().min(1, 'Name is required'),
-    description: z.string().min(1, 'Description is required'),
-  }),
+  body: CreateBusinessCategorySchema,
 });
 
 export const updateBusinessCategorySchema = z.object({
-  body: z.object({
-    name: z.string().min(1, 'Name is required').optional(),
-    description: z.string().min(1, 'Description is required').optional(),
-  }),
+  body: UpdateBusinessCategorySchema,
   params: z.object({
     id: z.string().regex(/^\d+$/, 'ID must be a number'),
   }),
 });
 
-export type CreateBusinessCategoryDTO = z.infer<
-  typeof createBusinessCategorySchema
->['body'];
-export type UpdateBusinessCategoryDTO = z.infer<
-  typeof updateBusinessCategorySchema
->['body'];
+// Re-export types from shared schemas
+export type CreateBusinessCategoryDTO = CreateBusinessCategoryInput;
+export type UpdateBusinessCategoryDTO = UpdateBusinessCategoryInput;

@@ -87,3 +87,10 @@
 {"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T21:51:19.765+08:00","userId":"system"}
 {"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T21:51:19.766+08:00","userId":"system"}
 {"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T21:51:19.766+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T22:04:48.398+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T22:04:48.399+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T22:04:48.399+08:00","userId":"system"}
+{"level":"info","message":"Received SIGINT. Starting graceful shutdown...","timestamp":"2025-10-08T22:04:53.629+08:00","userId":"system"}
+{"level":"info","message":"🚀 Server is running on http://localhost:3333","timestamp":"2025-10-08T22:07:30.872+08:00","userId":"system"}
+{"level":"info","message":"📚 API Documentation: http://localhost:3333/api/v1","timestamp":"2025-10-08T22:07:30.873+08:00","userId":"system"}
+{"level":"info","message":"🏥 Health Check: http://localhost:3333/api/v1/health","timestamp":"2025-10-08T22:07:30.873+08:00","userId":"system"}
