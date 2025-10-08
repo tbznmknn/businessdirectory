@@ -17,5 +17,6 @@ app.get('/api', (req, res) => {
 const port = process.env.PORT || 3333;
 const server = app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/api`);
+  console.log('env test', process.env.DATABASE_URL);
 });
 server.on('error', console.error);

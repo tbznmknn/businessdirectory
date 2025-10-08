@@ -9,7 +9,7 @@ generator zod {
 }
 
 datasource db {
-  provider = "mysql" // or mysql, sqlite, etc.
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
