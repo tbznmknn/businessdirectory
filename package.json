@@ -5,11 +5,14 @@
   "scripts": {},
   "private": true,
   "dependencies": {
+    "@prisma/client": "^6.17.0",
     "axios": "^1.6.0",
     "express": "^4.21.2",
     "next": "~15.2.4",
     "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react-dom": "19.0.0",
+    "zod": "^4.1.12",
+    "zod-prisma-types": "^3.3.5"
   },
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
@@ -42,15 +45,19 @@
     "eslint-plugin-jsx-a11y": "6.10.1",
     "eslint-plugin-react": "7.35.0",
     "eslint-plugin-react-hooks": "5.0.0",
+    "jsonc-eslint-parser": "^2.1.0",
     "nx": "21.6.2",
     "prettier": "^2.6.2",
+    "prisma": "^6.17.0",
     "react-refresh": "^0.10.0",
+    "ts-node": "10.9.1",
     "tslib": "^2.3.0",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.40.0",
     "webpack-cli": "^5.1.4"
   },
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "libs/*"
   ]
 }

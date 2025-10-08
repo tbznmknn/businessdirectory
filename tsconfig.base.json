@@ -16,6 +16,9 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@businessdirectory/source"]
+    "customConditions": ["@businessdirectory/source"],
+    "paths": {
+      "@businessdirectory/database": ["libs/database/src/index.ts"]
+    }
   }
 }
