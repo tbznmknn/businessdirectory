@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+generator zod {
+  provider = "zod-prisma-types"
+  output   = "../src/generated/zod"
+}
+
+datasource db {
+  provider = "mysql" // or mysql, sqlite, etc.
+  url      = env("DATABASE_URL")
+}
+
+// Example model
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
