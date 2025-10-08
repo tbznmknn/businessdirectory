@@ -95,9 +95,82 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  name: 'name',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  phone: 'phone',
+  hashedPassword: 'hashedPassword',
+  role: 'role',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.VerificationTokenScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  token: 'token',
+  expires: 'expires',
+  createdAt: 'createdAt',
+  action: 'action'
+};
+
+exports.Prisma.BusinessCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BusinessScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  photo: 'photo',
+  link: 'link',
+  summary: 'summary',
+  richContent: 'richContent',
+  isActive: 'isActive',
+  isInsideMall: 'isInsideMall',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  categoryId: 'categoryId'
+};
+
+exports.Prisma.BusinessAddressScalarFieldEnum = {
+  id: 'id',
+  businessId: 'businessId',
+  address: 'address',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BusinessAdminScalarFieldEnum = {
+  id: 'id',
+  businessId: 'businessId',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ReviewsScalarFieldEnum = {
+  id: 'id',
+  businessId: 'businessId',
+  userId: 'userId',
+  rating: 'rating',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RichReviewContentScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  reviewId: 'reviewId'
 };
 
 exports.Prisma.SortOrder = {
@@ -111,14 +184,64 @@ exports.Prisma.NullsOrder = {
 };
 
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
-  id: 'id',
   email: 'email',
-  name: 'name'
+  firstName: 'firstName',
+  lastName: 'lastName',
+  phone: 'phone',
+  hashedPassword: 'hashedPassword'
 };
 
+exports.Prisma.VerificationTokenOrderByRelevanceFieldEnum = {
+  email: 'email',
+  token: 'token'
+};
+
+exports.Prisma.BusinessCategoryOrderByRelevanceFieldEnum = {
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.BusinessOrderByRelevanceFieldEnum = {
+  name: 'name',
+  email: 'email',
+  photo: 'photo',
+  link: 'link',
+  summary: 'summary',
+  richContent: 'richContent',
+  description: 'description'
+};
+
+exports.Prisma.BusinessAddressOrderByRelevanceFieldEnum = {
+  address: 'address'
+};
+
+exports.Prisma.ReviewsOrderByRelevanceFieldEnum = {
+  comment: 'comment'
+};
+
+exports.Prisma.RichReviewContentOrderByRelevanceFieldEnum = {
+  content: 'content'
+};
+exports.UserRole = exports.$Enums.UserRole = {
+  USER: 'USER',
+  ADMIN: 'ADMIN',
+  SUPERADMIN: 'SUPERADMIN'
+};
+
+exports.VerificationTokenAction = exports.$Enums.VerificationTokenAction = {
+  VERIFY: 'VERIFY',
+  RESET: 'RESET'
+};
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  VerificationToken: 'VerificationToken',
+  BusinessCategory: 'BusinessCategory',
+  Business: 'Business',
+  BusinessAddress: 'BusinessAddress',
+  BusinessAdmin: 'BusinessAdmin',
+  Reviews: 'Reviews',
+  RichReviewContent: 'RichReviewContent'
 };
 /**
  * Create the Client
@@ -159,6 +282,7 @@ const config = {
     "db"
   ],
   "activeProvider": "mysql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -167,13 +291,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/client\"\n}\n\ngenerator zod {\n  provider = \"zod-prisma-types\"\n  output   = \"../src/generated/zod\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// Example model\nmodel User {\n  id        String   @id @default(cuid())\n  email     String   @unique\n  name      String?\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n",
-  "inlineSchemaHash": "0774d4016c242a912f02432f70213f9d9993bd09a0170e230bee3baaad5a7d9c",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/client\"\n}\n\ngenerator zod {\n  provider               = \"zod-prisma-types\"\n  output                 = \"../src/generated/zod\"\n  useMultipleFiles       = false\n  createInputTypes       = false\n  addInputTypeValidation = false\n  prismaClientPath       = \"../client/index.js\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum UserRole {\n  USER\n  ADMIN\n  SUPERADMIN\n}\n\nenum VerificationTokenAction {\n  VERIFY\n  RESET\n}\n\nmodel User {\n  id             Int             @id @default(autoincrement())\n  email          String          @unique\n  firstName      String?\n  lastName       String?\n  phone          String?\n  hashedPassword String?\n  role           UserRole        @default(USER)\n  createdAt      DateTime        @default(now())\n  updatedAt      DateTime        @updatedAt\n  reviews        Reviews[]\n  admins         BusinessAdmin[]\n}\n\nmodel VerificationToken {\n  id        Int                     @id @default(autoincrement())\n  email     String\n  token     String\n  expires   DateTime\n  createdAt DateTime                @default(now())\n  action    VerificationTokenAction\n\n  @@unique([email, action])\n}\n\nmodel BusinessCategory {\n  id          Int    @id @default(autoincrement())\n  name        String\n  description String\n\n  createdAt  DateTime   @default(now())\n  updatedAt  DateTime   @updatedAt\n  businesses Business[]\n}\n\nmodel Business {\n  id           Int               @id @default(autoincrement())\n  name         String\n  email        String\n  photo        String\n  link         String?\n  summary      String\n  richContent  String            @db.Text\n  isActive     Boolean           @default(true)\n  isInsideMall Boolean           @default(false)\n  description  String?\n  createdAt    DateTime          @default(now())\n  updatedAt    DateTime          @updatedAt\n  categoryId   Int\n  category     BusinessCategory  @relation(fields: [categoryId], references: [id])\n  addresses    BusinessAddress[]\n  reviews      Reviews[]\n  admins       BusinessAdmin[]\n}\n\nmodel BusinessAddress {\n  id         Int      @id @default(autoincrement())\n  businessId Int\n  business   Business @relation(fields: [businessId], references: [id])\n  address    String\n  latitude   Float\n  longitude  Float\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n}\n\nmodel BusinessAdmin {\n  id         Int      @id @default(autoincrement())\n  businessId Int\n  business   Business @relation(fields: [businessId], references: [id])\n  userId     Int\n  user       User     @relation(fields: [userId], references: [id])\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n\n  @@unique([businessId, userId])\n}\n\nmodel Reviews {\n  id          Int                @id @default(autoincrement())\n  businessId  Int\n  business    Business           @relation(fields: [businessId], references: [id])\n  userId      Int\n  user        User               @relation(fields: [userId], references: [id])\n  rating      Int //up to 5.\n  comment     String?\n  createdAt   DateTime           @default(now())\n  updatedAt   DateTime           @updatedAt\n  richContent RichReviewContent?\n\n  @@unique([businessId, userId])\n}\n\nmodel RichReviewContent {\n  id        Int      @id @default(autoincrement())\n  content   String   @db.Text\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  reviewId  Int      @unique\n  review    Reviews? @relation(fields: [reviewId], references: [id])\n}\n",
+  "inlineSchemaHash": "aa990978328968cd6e0e5677da1b6bc4867d8853c1bf5c6f867b7d743d842aee",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"firstName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"hashedPassword\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"UserRole\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"reviews\",\"kind\":\"object\",\"type\":\"Reviews\",\"relationName\":\"ReviewsToUser\"},{\"name\":\"admins\",\"kind\":\"object\",\"type\":\"BusinessAdmin\",\"relationName\":\"BusinessAdminToUser\"}],\"dbName\":null},\"VerificationToken\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expires\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"action\",\"kind\":\"enum\",\"type\":\"VerificationTokenAction\"}],\"dbName\":null},\"BusinessCategory\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"businesses\",\"kind\":\"object\",\"type\":\"Business\",\"relationName\":\"BusinessToBusinessCategory\"}],\"dbName\":null},\"Business\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"photo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"link\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"summary\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"richContent\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isActive\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"isInsideMall\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"categoryId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"category\",\"kind\":\"object\",\"type\":\"BusinessCategory\",\"relationName\":\"BusinessToBusinessCategory\"},{\"name\":\"addresses\",\"kind\":\"object\",\"type\":\"BusinessAddress\",\"relationName\":\"BusinessToBusinessAddress\"},{\"name\":\"reviews\",\"kind\":\"object\",\"type\":\"Reviews\",\"relationName\":\"BusinessToReviews\"},{\"name\":\"admins\",\"kind\":\"object\",\"type\":\"BusinessAdmin\",\"relationName\":\"BusinessToBusinessAdmin\"}],\"dbName\":null},\"BusinessAddress\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"businessId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"business\",\"kind\":\"object\",\"type\":\"Business\",\"relationName\":\"BusinessToBusinessAddress\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"latitude\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"longitude\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"BusinessAdmin\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"businessId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"business\",\"kind\":\"object\",\"type\":\"Business\",\"relationName\":\"BusinessToBusinessAdmin\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"BusinessAdminToUser\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Reviews\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"businessId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"business\",\"kind\":\"object\",\"type\":\"Business\",\"relationName\":\"BusinessToReviews\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"ReviewsToUser\"},{\"name\":\"rating\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"comment\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"richContent\",\"kind\":\"object\",\"type\":\"RichReviewContent\",\"relationName\":\"ReviewsToRichReviewContent\"}],\"dbName\":null},\"RichReviewContent\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"reviewId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"review\",\"kind\":\"object\",\"type\":\"Reviews\",\"relationName\":\"ReviewsToRichReviewContent\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

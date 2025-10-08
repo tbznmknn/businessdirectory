@@ -123,9 +123,82 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  name: 'name',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  phone: 'phone',
+  hashedPassword: 'hashedPassword',
+  role: 'role',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.VerificationTokenScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  token: 'token',
+  expires: 'expires',
+  createdAt: 'createdAt',
+  action: 'action'
+};
+
+exports.Prisma.BusinessCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BusinessScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  photo: 'photo',
+  link: 'link',
+  summary: 'summary',
+  richContent: 'richContent',
+  isActive: 'isActive',
+  isInsideMall: 'isInsideMall',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  categoryId: 'categoryId'
+};
+
+exports.Prisma.BusinessAddressScalarFieldEnum = {
+  id: 'id',
+  businessId: 'businessId',
+  address: 'address',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BusinessAdminScalarFieldEnum = {
+  id: 'id',
+  businessId: 'businessId',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ReviewsScalarFieldEnum = {
+  id: 'id',
+  businessId: 'businessId',
+  userId: 'userId',
+  rating: 'rating',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RichReviewContentScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  reviewId: 'reviewId'
 };
 
 exports.Prisma.SortOrder = {
@@ -139,14 +212,64 @@ exports.Prisma.NullsOrder = {
 };
 
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
-  id: 'id',
   email: 'email',
-  name: 'name'
+  firstName: 'firstName',
+  lastName: 'lastName',
+  phone: 'phone',
+  hashedPassword: 'hashedPassword'
 };
 
+exports.Prisma.VerificationTokenOrderByRelevanceFieldEnum = {
+  email: 'email',
+  token: 'token'
+};
+
+exports.Prisma.BusinessCategoryOrderByRelevanceFieldEnum = {
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.BusinessOrderByRelevanceFieldEnum = {
+  name: 'name',
+  email: 'email',
+  photo: 'photo',
+  link: 'link',
+  summary: 'summary',
+  richContent: 'richContent',
+  description: 'description'
+};
+
+exports.Prisma.BusinessAddressOrderByRelevanceFieldEnum = {
+  address: 'address'
+};
+
+exports.Prisma.ReviewsOrderByRelevanceFieldEnum = {
+  comment: 'comment'
+};
+
+exports.Prisma.RichReviewContentOrderByRelevanceFieldEnum = {
+  content: 'content'
+};
+exports.UserRole = exports.$Enums.UserRole = {
+  USER: 'USER',
+  ADMIN: 'ADMIN',
+  SUPERADMIN: 'SUPERADMIN'
+};
+
+exports.VerificationTokenAction = exports.$Enums.VerificationTokenAction = {
+  VERIFY: 'VERIFY',
+  RESET: 'RESET'
+};
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  VerificationToken: 'VerificationToken',
+  BusinessCategory: 'BusinessCategory',
+  Business: 'Business',
+  BusinessAddress: 'BusinessAddress',
+  BusinessAdmin: 'BusinessAdmin',
+  Reviews: 'Reviews',
+  RichReviewContent: 'RichReviewContent'
 };
 
 /**
