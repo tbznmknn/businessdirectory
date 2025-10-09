@@ -51,3 +51,4 @@ test-output
 .env
 logs/
 /logs
+apps/api/logs/

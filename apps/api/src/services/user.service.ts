@@ -40,23 +40,24 @@ export class UserService extends BaseService<
           role: true,
           createdAt: true,
           updatedAt: true,
-          hashedPassword: false, // Exclude password from results
-          _count: {
-            select: {
-              reviews: true,
-              admins: true,
-            },
-          },
+          hashedPassword: true, // Include but will be removed before return
         },
       }),
       prisma.user.count({ where: filter.where }),
     ]);
 
-    return { data: data as User[], total };
+    // Remove hashedPassword from results
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const sanitizedData = data.map(({ hashedPassword: _, ...user }) => ({
+      ...user,
+      hashedPassword: null,
+    }));
+
+    return { data: sanitizedData as User[], total };
   }
 
   async findById(id: number): Promise<User | null> {
-    return prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { id },
       select: {
         id: true,
@@ -67,15 +68,16 @@ export class UserService extends BaseService<
         role: true,
         createdAt: true,
         updatedAt: true,
-        hashedPassword: false,
-        _count: {
-          select: {
-            reviews: true,
-            admins: true,
-          },
-        },
+        hashedPassword: true,
       },
-    }) as Promise<User | null>;
+    });
+
+    if (!user) return null;
+
+    // Remove hashedPassword from result
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { hashedPassword, ...sanitizedUser } = user;
+    return { ...sanitizedUser, hashedPassword: null } as User;
   }
 
   async create(data: CreateUserDTO): Promise<User> {

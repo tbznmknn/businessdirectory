@@ -18,7 +18,7 @@ export const catchAsync = (
 export const catchAsyncAuth = <T extends Request = Request>(
   fn: (req: T, res: Response, next: NextFunction) => Promise<void>
 ): RequestHandler => {
-  return (req: T, res: Response, next: NextFunction) => {
-    Promise.resolve(fn(req, res, next)).catch(next);
+  return (req: Request, res: Response, next: NextFunction) => {
+    Promise.resolve(fn(req as T, res, next)).catch(next);
   };
 };

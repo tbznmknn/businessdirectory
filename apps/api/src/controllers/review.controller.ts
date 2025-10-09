@@ -38,9 +38,9 @@ export class ReviewController extends BaseController<
   }
 
   // Override create to pass userId from auth
-  create = catchAsync(async (req: Request, res: Response) => {
+  override create = catchAsync(async (req: Request, res: Response) => {
     const authReq = req as AuthenticatedRequest;
-    const review = await this.reviewService.create(
+    const review = await this.reviewService.createWithUserId(
       req.body as CreateReviewDTO,
       authReq.userId
     );
@@ -49,10 +49,10 @@ export class ReviewController extends BaseController<
   });
 
   // Override update to pass userId from auth
-  update = catchAsync(async (req: Request, res: Response) => {
+  override update = catchAsync(async (req: Request, res: Response) => {
     const authReq = req as AuthenticatedRequest;
     const id = parseInt(req.params.id);
-    const review = await this.reviewService.update(
+    const review = await this.reviewService.updateWithUserId(
       id,
       req.body as UpdateReviewDTO,
       authReq.userId
@@ -62,7 +62,7 @@ export class ReviewController extends BaseController<
   });
 
   // Override delete to pass userId from auth
-  delete = catchAsync(async (req: Request, res: Response) => {
+  override delete = catchAsync(async (req: Request, res: Response) => {
     const authReq = req as AuthenticatedRequest;
     const id = parseInt(req.params.id);
 
@@ -72,7 +72,7 @@ export class ReviewController extends BaseController<
         ? undefined
         : authReq.userId;
 
-    await this.reviewService.delete(id, userId);
+    await this.reviewService.deleteWithUserId(id, userId);
 
     return ResponseHandler.noContent(res);
   });

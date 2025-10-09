@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { BaseController } from '../controllers/base.controller';
-import { AnyZodObject } from 'zod';
+import { ZodType } from 'zod';
 import { validate } from '../middlewares/validate';
 
 export abstract class BaseRoute<T, CreateDTO, UpdateDTO> {
@@ -8,8 +8,8 @@ export abstract class BaseRoute<T, CreateDTO, UpdateDTO> {
 
   constructor(
     protected controller: BaseController<T, CreateDTO, UpdateDTO>,
-    protected createSchema?: AnyZodObject,
-    protected updateSchema?: AnyZodObject
+    protected createSchema?: ZodType,
+    protected updateSchema?: ZodType
   ) {
     this.router = Router();
     this.initializeRoutes();

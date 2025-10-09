@@ -67,7 +67,17 @@ export class ReviewService extends BaseService<
     });
   }
 
-  async create(data: CreateReviewDTO, userId: number): Promise<Reviews> {
+  // Base interface implementation (not used directly in ReviewController)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async create(_data: CreateReviewDTO): Promise<Reviews> {
+    throw new AppError(
+      'Use createWithUserId method instead',
+      500,
+      'METHOD_NOT_IMPLEMENTED'
+    );
+  }
+
+  async createWithUserId(data: CreateReviewDTO, userId: number): Promise<Reviews> {
     const business = await prisma.business.findUnique({
       where: { id: data.businessId },
     });
@@ -125,7 +135,17 @@ export class ReviewService extends BaseService<
     return review;
   }
 
-  async update(
+  // Base interface implementation (not used directly in ReviewController)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async update(_id: number, _data: UpdateReviewDTO): Promise<Reviews> {
+    throw new AppError(
+      'Use updateWithUserId method instead',
+      500,
+      'METHOD_NOT_IMPLEMENTED'
+    );
+  }
+
+  async updateWithUserId(
     id: number,
     data: UpdateReviewDTO,
     userId: number
@@ -185,7 +205,12 @@ export class ReviewService extends BaseService<
     return review;
   }
 
-  async delete(id: number, userId?: number): Promise<void> {
+  // Base interface implementation (not used directly in ReviewController)
+  async delete(id: number): Promise<void> {
+    await this.deleteWithUserId(id);
+  }
+
+  async deleteWithUserId(id: number, userId?: number): Promise<void> {
     const existing = await prisma.reviews.findUnique({ where: { id } });
     if (!existing) {
       throw new AppError('Review not found', 404, 'NOT_FOUND');
