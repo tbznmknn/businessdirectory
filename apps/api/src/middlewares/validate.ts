@@ -18,13 +18,17 @@ export const validate = (schema: ZodType) => {
           message: err.message,
         }));
 
-        throw new AppError(
-          `Validation failed: ${errors
-            .map((e) => `${e.field}: ${e.message}`)
-            .join(', ')}`,
-          400,
-          'VALIDATION_ERROR'
+        // Pass error to Express error handler instead of throwing
+        next(
+          new AppError(
+            `Validation failed: ${errors
+              .map((e) => `${e.field}: ${e.message}`)
+              .join(', ')}`,
+            400,
+            'VALIDATION_ERROR'
+          )
         );
+        return; // Important: prevent further execution
       }
       next(error);
     }

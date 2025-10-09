@@ -140,9 +140,14 @@ npx nx build api             # Build API
 npx nx build web             # Build Next.js app
 npx nx build database        # Build database library
 
-# Lint
+# Lint & Type Check
 npx nx lint api              # Lint API
 npx nx lint web              # Lint Next.js app
+npx tsc --build              # TypeScript check all projects
+
+# Testing API Requirements (20 pts)
+cd apps/api && pwsh test-api-requirements.ps1  # Windows PowerShell
+cd apps/api && bash test-api-requirements.sh   # Linux/Mac
 ```
 
 ## 🔒 Authentication

@@ -5,13 +5,17 @@ import businessCategoryRoutes from './business-category.route';
 import businessRoutes from './business.route';
 import businessAddressRoutes from './business-address.route';
 import reviewRoutes from './review.route';
+import healthRoutes from './health.route';
 
 const router = Router();
 
-// Health check
+// Basic health check
 router.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
+
+// Enhanced health routes with validation demos
+router.use('/health', healthRoutes);
 
 // API Routes
 router.use('/users', userRoutes);
