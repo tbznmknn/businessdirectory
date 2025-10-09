@@ -61,19 +61,17 @@ export class QueryBuilder {
           else if (value.startsWith('*') && value.endsWith('*')) {
             where[field] = {
               contains: value.slice(1, -1),
-              mode: 'insensitive',
             };
           }
           // Check for starts with
           else if (value.endsWith('*')) {
             where[field] = {
               startsWith: value.slice(0, -1),
-              mode: 'insensitive',
             };
           }
           // Check for ends with
           else if (value.startsWith('*')) {
-            where[field] = { endsWith: value.slice(1), mode: 'insensitive' };
+            where[field] = { endsWith: value.slice(1) };
           }
           // Exact match
           else {
@@ -100,7 +98,6 @@ export class QueryBuilder {
         OR: searchFields.map((field) => ({
           [field]: {
             contains: searchTerm,
-            mode: 'insensitive',
           },
         })),
       },
