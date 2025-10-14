@@ -1,4 +1,4 @@
-import { Business } from '@businessdirectory/database';
+import { Business, BusinessWithExtras } from '@businessdirectory/database';
 import { BaseService } from './base.service';
 import { prisma } from '../utils/prisma';
 import {
@@ -21,7 +21,7 @@ export class BusinessService extends BaseService<
     pagination: PaginationParams,
     sort: SortParams,
     filter: FilterParams
-  ): Promise<{ data: Business[]; total: number }> {
+  ): Promise<{ data: BusinessWithExtras[]; total: number }> {
     const [data, total] = await Promise.all([
       prisma.business.findMany({
         skip: pagination.skip,
@@ -46,8 +46,18 @@ export class BusinessService extends BaseService<
       }),
       prisma.business.count({ where: filter.where }),
     ]);
-
-    return { data, total };
+    // find average review rating
+    const averageReviewRating = await prisma.reviews.aggregate({
+      where: filter.where,
+      _avg: {
+        rating: true,
+      },
+    });
+    console.log(averageReviewRating);
+    data.forEach((business: any) => {
+      business.averageReviewRating = averageReviewRating._avg.rating;
+    });
+    return { data: data as BusinessWithExtras[], total };
   }
 
   async findById(id: number): Promise<Business | null> {

@@ -8,19 +8,27 @@ const parentCategories = [
   {
     name: 'Food & Dining',
     description: 'All food and dining related businesses',
+    icon: 'FaUtensils',
   },
   {
     name: 'Retail & Shopping',
     description: 'Shopping and retail establishments',
+    icon: 'FaShoppingBag',
   },
-  { name: 'Health & Medical', description: 'Healthcare and medical services' },
+  {
+    name: 'Health & Medical',
+    description: 'Healthcare and medical services',
+    icon: 'FaHeartbeat',
+  },
   {
     name: 'Entertainment & Leisure',
     description: 'Entertainment and recreational activities',
+    icon: 'FaGamepad',
   },
   {
     name: 'Professional Services',
     description: 'Business and professional services',
+    icon: 'FaBriefcase',
   },
 ];
 
@@ -29,44 +37,51 @@ const categories = [
     name: 'Restaurant',
     description: 'Food and dining establishments',
     parentIndex: 0,
+    icon: 'FaUtensils',
   },
   {
     name: 'Shopping',
     description: 'Retail stores and shopping centers',
     parentIndex: 1,
+    icon: 'FaShoppingCart',
   },
   {
     name: 'Healthcare',
     description: 'Medical and health services',
     parentIndex: 2,
+    icon: 'FaStethoscope',
   },
   {
     name: 'Entertainment',
     description: 'Movies, games, and entertainment',
     parentIndex: 3,
+    icon: 'FaFilm',
   },
   {
     name: 'Education',
     description: 'Schools and educational institutions',
     parentIndex: 4,
+    icon: 'FaBook',
   },
   {
     name: 'Technology',
     description: 'Tech companies and IT services',
     parentIndex: 4,
+    icon: 'FaLaptopCode',
   },
   {
     name: 'Automotive',
     description: 'Car services and dealerships',
     parentIndex: 4,
+    icon: 'FaCar',
   },
   {
     name: 'Beauty & Wellness',
     description: 'Salons, spas, and wellness centers',
     parentIndex: 2,
+    icon: 'FaSpa',
   },
 ];
-
 const businessNames = [
   'Urban Eats',
   'Tech Hub',
@@ -175,6 +190,7 @@ async function seedCategories(parentCats: any[]) {
         data: {
           name: cat.name,
           description: cat.description,
+          icon: cat.icon,
           parentCategoryId: parentCats[cat.parentIndex].id,
         },
       })

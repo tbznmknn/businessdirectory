@@ -16,9 +16,9 @@ export const UserScalarFieldEnumSchema = z.enum(['id','email','firstName','lastN
 
 export const VerificationTokenScalarFieldEnumSchema = z.enum(['id','email','token','expires','createdAt','action']);
 
-export const BusinessParentCategoryScalarFieldEnumSchema = z.enum(['id','name','description','createdAt','updatedAt']);
+export const BusinessParentCategoryScalarFieldEnumSchema = z.enum(['id','name','description','icon','createdAt','updatedAt']);
 
-export const BusinessCategoryScalarFieldEnumSchema = z.enum(['id','name','description','createdAt','updatedAt','parentCategoryId']);
+export const BusinessCategoryScalarFieldEnumSchema = z.enum(['id','name','description','icon','createdAt','updatedAt','parentCategoryId']);
 
 export const BusinessScalarFieldEnumSchema = z.enum(['id','name','email','photo','link','summary','richContent','isActive','isInsideMall','description','createdAt','updatedAt','categoryId']);
 
@@ -38,9 +38,9 @@ export const UserOrderByRelevanceFieldEnumSchema = z.enum(['email','firstName','
 
 export const VerificationTokenOrderByRelevanceFieldEnumSchema = z.enum(['email','token']);
 
-export const BusinessParentCategoryOrderByRelevanceFieldEnumSchema = z.enum(['name','description']);
+export const BusinessParentCategoryOrderByRelevanceFieldEnumSchema = z.enum(['name','description','icon']);
 
-export const BusinessCategoryOrderByRelevanceFieldEnumSchema = z.enum(['name','description']);
+export const BusinessCategoryOrderByRelevanceFieldEnumSchema = z.enum(['name','description','icon']);
 
 export const BusinessOrderByRelevanceFieldEnumSchema = z.enum(['name','email','photo','link','summary','richContent','description']);
 
@@ -103,6 +103,7 @@ export const BusinessParentCategorySchema = z.object({
   id: z.number().int(),
   name: z.string(),
   description: z.string(),
+  icon: z.string(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
 })
@@ -117,6 +118,7 @@ export const BusinessCategorySchema = z.object({
   id: z.number().int(),
   name: z.string(),
   description: z.string(),
+  icon: z.string(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
   parentCategoryId: z.number().int(),

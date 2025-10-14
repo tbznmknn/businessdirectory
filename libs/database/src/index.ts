@@ -9,3 +9,6 @@ export * from './schemas/index.js';
 
 // Export a singleton instance for the API
 export { prisma } from './lib/prisma.js';
+
+// Export extended types
+export * from './extended/index.js';

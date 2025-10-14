@@ -57,7 +57,7 @@ model BusinessParentCategory {
   id          Int    @id @default(autoincrement())
   name        String
   description String
-
+  icon String
   createdAt  DateTime           @default(now())
   updatedAt  DateTime           @updatedAt
   categories BusinessCategory[]
@@ -67,7 +67,7 @@ model BusinessCategory {
   id          Int    @id @default(autoincrement())
   name        String
   description String
-
+  icon String
   createdAt        DateTime               @default(now())
   updatedAt        DateTime               @updatedAt
   businesses       Business[]
