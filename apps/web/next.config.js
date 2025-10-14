@@ -10,6 +10,9 @@ const nextConfig = {
   // Use this to set Nx-specific options
   // See: https://nx.dev/recipes/next/next-config-setup
   nx: {},
+  images: {
+    domains: ['localhost', '127.0.0.1', 'localhost:3000', 'picsum.photos'],
+  },
 };
 
 const plugins = [

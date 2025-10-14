@@ -29,6 +29,11 @@ export class BusinessService extends BaseService<
         orderBy: sort.orderBy,
         where: filter.where,
         include: {
+          reviews: {
+            select: {
+              rating: true,
+            },
+          },
           category: {
             select: {
               id: true,
@@ -47,17 +52,18 @@ export class BusinessService extends BaseService<
       prisma.business.count({ where: filter.where }),
     ]);
     // find average review rating
-    const averageReviewRating = await prisma.reviews.aggregate({
-      where: filter.where,
-      _avg: {
-        rating: true,
-      },
+
+    const dataWithAverage = data.map((business) => {
+      const avg =
+        business.reviews.length > 0
+          ? business.reviews.reduce((sum, r) => sum + r.rating, 0) /
+            business.reviews.length
+          : null;
+
+      return { ...business, averageReviewRating: avg };
     });
-    console.log(averageReviewRating);
-    data.forEach((business: any) => {
-      business.averageReviewRating = averageReviewRating._avg.rating;
-    });
-    return { data: data as BusinessWithExtras[], total };
+
+    return { data: dataWithAverage as BusinessWithExtras[], total };
   }
 
   async findById(id: number): Promise<Business | null> {

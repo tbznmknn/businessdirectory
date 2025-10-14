@@ -38,6 +38,7 @@ export class ReviewService extends BaseService<
             select: {
               id: true,
               name: true,
+              photo: true,
             },
           },
           richContent: true,
@@ -77,7 +78,10 @@ export class ReviewService extends BaseService<
     );
   }
 
-  async createWithUserId(data: CreateReviewDTO, userId: number): Promise<Reviews> {
+  async createWithUserId(
+    data: CreateReviewDTO,
+    userId: number
+  ): Promise<Reviews> {
     const business = await prisma.business.findUnique({
       where: { id: data.businessId },
     });
