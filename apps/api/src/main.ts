@@ -14,7 +14,7 @@ dotenv.config();
 
 const app = createApp();
 
-const port = process.env.PORT || 3333;
+const port = process.env.BACKEND_PORT || 3333;
 const server = app.listen(port, () => {
   logger.info(`🚀 Server is running on http://localhost:${port}`);
   logger.info(`📚 API Documentation: http://localhost:${port}/api/v1`);
