@@ -30,7 +30,7 @@ function CategoryCard({ category }: { category: BusinessCategory }) {
   const Icon =
     FaIcons[category.icon as keyof typeof FaIcons] || FaIcons.FaRegSquare;
   return (
-    <Link href={`/categories/${category.id}`}>
+    <Link href={`/yellow-books?categoryId=${category.id}`}>
       <div className="flex hover:scale-105 transition-all duration-300 items-center justify-center flex-col gap-2">
         <Icon className="size-8 text-muted" />
         {category.name}

@@ -5,7 +5,7 @@ import { CiCircleChevLeft, CiCircleChevRight } from 'react-icons/ci';
 import Image from 'next/image';
 export default async function NewComments() {
   const comments = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/reviews?page=1&limit=60&sortBy=createdAt&sortOrder=desc`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/reviews?page=1&limit=12&sortBy=createdAt&sortOrder=desc`
   );
   const commentsData: ReviewsListResponse[] = (await comments.json()).data;
   // console.log('commentsData', comments);

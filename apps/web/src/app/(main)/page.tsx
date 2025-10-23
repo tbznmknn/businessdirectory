@@ -8,7 +8,7 @@ export default function HomePage() {
   return (
     <div className="">
       <FirstSearch />
-      <div className="flex justify-center  items-center flex-col w-full">
+      <div className="flex justify-center  items-center mb-10 flex-col w-full">
         <div className="w-full max-w-7xl space-y-10  mx-auto">
           <Suspense fallback={<div>Loading...</div>}>
             <CategoryRecommendation />

@@ -34,10 +34,18 @@ export class BusinessService extends BaseService<
               rating: true,
             },
           },
+
           category: {
             select: {
               id: true,
+              icon: true,
               name: true,
+              parentCategory: {
+                select: {
+                  icon: true,
+                  name: true,
+                },
+              },
             },
           },
           addresses: true,
@@ -60,7 +68,9 @@ export class BusinessService extends BaseService<
             business.reviews.length
           : null;
 
-      return { ...business, averageReviewRating: avg };
+      //omit reviews list from data
+      const { reviews: _, ...businessWithoutReviews } = business;
+      return { ...businessWithoutReviews, averageReviewRating: avg };
     });
 
     return { data: dataWithAverage as BusinessWithExtras[], total };

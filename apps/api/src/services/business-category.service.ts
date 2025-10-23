@@ -35,6 +35,13 @@ export class BusinessCategoryService extends BaseService<
           _count: {
             select: { businesses: true },
           },
+          parentCategory: {
+            select: {
+              icon: true,
+              id: true,
+              name: true,
+            },
+          },
         },
       }),
       prisma.businessCategory.count({ where: filter.where }),
