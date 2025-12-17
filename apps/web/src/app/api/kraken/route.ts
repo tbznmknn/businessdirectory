@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    const result: ApiResponse<any> = await response.json();
+    const result: ApiResponse<Record<string, unknown>> = await response.json();
 
     if (!response.ok || !result.success) {
       return NextResponse.json(

@@ -3,6 +3,19 @@ import { UserService } from '../services/user.service';
 import { OAuthLoginDTO } from '../validation/user.schema';
 import { catchAsync } from '../utils/catchAsync';
 
+/**
+ * GitHub OAuth profile type
+ */
+interface GitHubProfile {
+  id: string;
+  username?: string;
+  displayName?: string;
+  name?: string;
+  email?: string;
+  emails?: Array<{ value: string; verified?: boolean }>;
+  photos?: Array<{ value: string }>;
+}
+
 export class AuthController {
   private userService: UserService;
 
@@ -14,7 +27,7 @@ export class AuthController {
    * Initiate GitHub OAuth
    * This will be handled by Passport middleware
    */
-  githubAuth = catchAsync(async (req: Request, res: Response) => {
+  githubAuth = catchAsync(async (_req: Request, _res: Response) => {
     // Passport middleware handles the redirect to GitHub
     // This method is called by the route handler
   });
@@ -26,7 +39,7 @@ export class AuthController {
   githubCallback = catchAsync(async (req: Request, res: Response) => {
     // Extract GitHub profile from Passport
     // passport-github2 provides profile with: id, username, displayName, emails, photos
-    const profile = req.user as any;
+    const profile = req.user as GitHubProfile | undefined;
 
     if (!profile) {
       return res.redirect(

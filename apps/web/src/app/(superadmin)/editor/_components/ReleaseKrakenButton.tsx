@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 interface ApiResponse {
   success: boolean;
-  data?: any;
+  data?: Record<string, unknown>;
   message?: string;
   error?: string;
 }

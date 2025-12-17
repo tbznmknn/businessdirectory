@@ -1,10 +1,13 @@
 import { Router } from 'express';
 import passport from 'passport';
-import { Strategy as GitHubStrategy } from 'passport-github2';
+import { Strategy as GitHubStrategy, Profile } from 'passport-github2';
 import { AuthController } from '../controllers/auth.controller';
 
 const router = Router();
 const authController = new AuthController();
+
+// Passport callback types
+type VerifyCallback = (error: Error | null, user?: Profile) => void;
 
 // Configure GitHub OAuth Strategy
 passport.use(
@@ -17,8 +20,8 @@ passport.use(
     async (
       accessToken: string,
       refreshToken: string,
-      profile: any,
-      done: any
+      profile: Profile,
+      done: VerifyCallback
     ) => {
       // Pass profile to done callback - it will be available in req.user
       return done(null, profile);
@@ -27,12 +30,12 @@ passport.use(
 );
 
 // Serialize user for session (not using sessions, but required by Passport)
-passport.serializeUser((user: any, done: any) => {
+passport.serializeUser((user, done) => {
   done(null, user);
 });
 
-passport.deserializeUser((user: any, done: any) => {
-  done(null, user);
+passport.deserializeUser((id, done) => {
+  done(null, id as unknown as Express.User);
 });
 
 /**

@@ -25,6 +25,17 @@ interface LoginResponse {
   token: string;
 }
 
+/**
+ * Extended user type for NextAuth with custom fields
+ */
+interface ExtendedUser {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+  token: string;
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true, // Required for NextAuth v5 in development
   providers: [
@@ -136,9 +147,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async jwt({ token, user }) {
       // Initial sign in
       if (user) {
-        token.id = user.id;
-        token.role = (user as any).role;
-        token.accessToken = (user as any).token;
+        const extendedUser = user as ExtendedUser;
+        token.id = extendedUser.id;
+        token.role = extendedUser.role;
+        token.accessToken = extendedUser.token;
       }
       return token;
     },

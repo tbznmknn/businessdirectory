@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
         Buffer.from(payload, 'base64').toString()
       ) as JwtPayload;
       userId = decoded.id;
-    } catch (error) {
+    } catch {
       return NextResponse.redirect(
         new URL('/signin?error=invalid_token', request.url)
       );

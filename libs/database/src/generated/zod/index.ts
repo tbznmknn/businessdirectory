@@ -1,10 +1,53 @@
-// @ts-nocheck - Generated file, ignore TypeScript errors
 import { z } from 'zod';
-import type { Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 /////////////////////////////////////////
 // HELPER FUNCTIONS
 /////////////////////////////////////////
+
+// JSON
+//------------------------------------------------------
+
+export type NullableJsonInput = Prisma.JsonValue | null | 'JsonNull' | 'DbNull' | Prisma.NullTypes.DbNull | Prisma.NullTypes.JsonNull;
+
+export const transformJsonNull = (v?: NullableJsonInput) => {
+  if (!v || v === 'DbNull') return Prisma.NullTypes.DbNull;
+  if (v === 'JsonNull') return Prisma.NullTypes.JsonNull;
+  return v;
+};
+
+export const JsonValueSchema: z.ZodType<Prisma.JsonValue> = z.lazy(() =>
+  z.union([
+    z.string(),
+    z.number(),
+    z.boolean(),
+    z.literal(null),
+    z.record(z.string(), z.lazy(() => JsonValueSchema.optional())),
+    z.array(z.lazy(() => JsonValueSchema)),
+  ])
+);
+
+export type JsonValueType = z.infer<typeof JsonValueSchema>;
+
+export const NullableJsonValue = z
+  .union([JsonValueSchema, z.literal('DbNull'), z.literal('JsonNull')])
+  .nullable()
+  .transform((v) => transformJsonNull(v));
+
+export type NullableJsonValueType = z.infer<typeof NullableJsonValue>;
+
+export const InputJsonValueSchema: z.ZodType<Prisma.InputJsonValue> = z.lazy(() =>
+  z.union([
+    z.string(),
+    z.number(),
+    z.boolean(),
+    z.object({ toJSON: z.any() }),
+    z.record(z.string(), z.lazy(() => z.union([InputJsonValueSchema, z.literal(null)]))),
+    z.array(z.lazy(() => z.union([InputJsonValueSchema, z.literal(null)]))),
+  ])
+);
+
+export type InputJsonValueType = z.infer<typeof InputJsonValueSchema>;
 
 
 /////////////////////////////////////////
@@ -21,7 +64,7 @@ export const BusinessParentCategoryScalarFieldEnumSchema = z.enum(['id','name','
 
 export const BusinessCategoryScalarFieldEnumSchema = z.enum(['id','name','description','icon','createdAt','updatedAt','parentCategoryId']);
 
-export const BusinessScalarFieldEnumSchema = z.enum(['id','name','email','photo','link','summary','richContent','isActive','isInsideMall','description','createdAt','updatedAt','categoryId']);
+export const BusinessScalarFieldEnumSchema = z.enum(['id','name','email','photo','link','summary','richContent','isActive','isInsideMall','description','embedding','createdAt','updatedAt','categoryId']);
 
 export const BusinessAddressScalarFieldEnumSchema = z.enum(['id','businessId','address','latitude','longitude','createdAt','updatedAt']);
 
@@ -33,6 +76,8 @@ export const RichReviewContentScalarFieldEnumSchema = z.enum(['id','content','cr
 
 export const SortOrderSchema = z.enum(['asc','desc']);
 
+export const NullableJsonNullValueInputSchema = z.enum(['DbNull','JsonNull',]).transform((value) => value === 'JsonNull' ? Prisma.JsonNull : value === 'DbNull' ? Prisma.DbNull : value);
+
 export const NullsOrderSchema = z.enum(['first','last']);
 
 export const UserOrderByRelevanceFieldEnumSchema = z.enum(['email','firstName','lastName','phone','hashedPassword']);
@@ -42,6 +87,10 @@ export const VerificationTokenOrderByRelevanceFieldEnumSchema = z.enum(['email',
 export const BusinessParentCategoryOrderByRelevanceFieldEnumSchema = z.enum(['name','description','icon']);
 
 export const BusinessCategoryOrderByRelevanceFieldEnumSchema = z.enum(['name','description','icon']);
+
+export const JsonNullValueFilterSchema = z.enum(['DbNull','JsonNull','AnyNull',]).transform((value) => value === 'JsonNull' ? Prisma.JsonNull : value === 'DbNull' ? Prisma.DbNull : value === 'AnyNull' ? Prisma.AnyNull : value);
+
+export const QueryModeSchema = z.enum(['default','insensitive']);
 
 export const BusinessOrderByRelevanceFieldEnumSchema = z.enum(['name','email','photo','link','summary','richContent','description']);
 
@@ -142,6 +191,7 @@ export const BusinessSchema = z.object({
   isActive: z.boolean(),
   isInsideMall: z.boolean(),
   description: z.string().nullable(),
+  embedding: JsonValueSchema.nullable(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
   categoryId: z.number().int(),

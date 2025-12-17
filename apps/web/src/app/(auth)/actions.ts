@@ -31,7 +31,7 @@ export async function registerAction(
     // Validate with zod
     const validatedData = CreateUserSchema.omit({ role: true }).parse(formData);
 
-    const response = await fetch(`${baseUrl}/api/v1/users/register`, {
+    const response = await fetch(`${baseUrl}/users/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
