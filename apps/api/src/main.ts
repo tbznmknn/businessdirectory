@@ -8,6 +8,7 @@ import { createApp } from './app';
 import { logger } from './utils/logger';
 import { gracefulShutdown } from './utils/gracefulShutdown';
 import PrismaService from './utils/prisma';
+import { startEmailWorker } from './workers/simple-email-worker';
 
 // Load environment variables
 dotenv.config();
@@ -22,6 +23,9 @@ const server = app.listen(port, () => {
   console.log(`\n🚀 Server is running on http://localhost:${port}`);
   console.log(`📚 API Endpoints: http://localhost:${port}/api/v1`);
   console.log(`🏥 Health Check: http://localhost:${port}/api/v1/health\n`);
+  
+  // Start email worker automatically
+  startEmailWorker();
 });
 
 server.on('error', (error) => {

@@ -86,6 +86,7 @@ model Business {
   isActive     Boolean           @default(true)
   isInsideMall Boolean           @default(false)
   description  String?
+  embedding    Json?
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
   categoryId   Int

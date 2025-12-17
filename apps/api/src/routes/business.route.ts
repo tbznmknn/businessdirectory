@@ -13,8 +13,21 @@ class BusinessRoute extends BaseRoute<
   CreateBusinessDTO,
   UpdateBusinessDTO
 > {
+  protected override controller: BusinessController;
+
   constructor() {
-    super(new BusinessController(), createBusinessSchema, updateBusinessSchema);
+    const businessController = new BusinessController();
+    super(businessController, createBusinessSchema, updateBusinessSchema);
+    this.controller = businessController;
+    this.initializeAIRoutes();
+  }
+
+  private initializeAIRoutes() {
+    // AI-powered semantic search
+    this.router.post('/search', this.controller.aiSearch);
+
+    // Clear AI search cache
+    this.router.delete('/search/cache', this.controller.clearSearchCache);
   }
 }
 
