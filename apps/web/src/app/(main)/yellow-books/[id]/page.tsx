@@ -7,41 +7,8 @@ import {
   BusinessReviewsSkeleton,
 } from '../_components/skeletons';
 
-// SSG: Generate static pages at build time, revalidate on-demand via tags
-export const revalidate = 60; // Enable time-based revalidation, also use on-demand
-export const dynamicParams = false; // Allow all dynamic params in generateStaticParams
-
-export async function generateStaticParams() {
-  try {
-    // During build time, the backend might not be available
-    // Return empty array to allow build to succeed, pages will be generated dynamically
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    if (!baseUrl) {
-      return [];
-    }
-
-    const response = await fetch(`${baseUrl}/businesses?limit=50`, {
-      next: { revalidate: 3600 }, // Cache for 1 hour during build
-    });
-
-    if (!response.ok) {
-      console.warn('Failed to fetch businesses for static params, falling back to dynamic rendering');
-      return [];
-    }
-
-    const data = await response.json();
-    const businesses = data?.data || [];
-
-    return businesses.map((business: { id: number }) => ({
-      id: String(business.id),
-    }));
-  } catch (error) {
-    // If fetch fails (e.g., backend not available during build), return empty array
-    // Pages will be generated dynamically at request time
-    console.warn('Error generating static params, falling back to dynamic rendering:', error);
-    return [];
-  }
-}
+// Force dynamic rendering - skip SSG to avoid build-time API fetch issues
+export const dynamic = 'force-dynamic';
 
 export default async function BusinessPage({
   params,
