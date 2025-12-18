@@ -2,8 +2,8 @@ import YellowBooksList from './_components/yellow-books-list';
 import { Suspense } from 'react';
 import { YellowBooksListSkeleton } from './_components/skeletons';
 
-// ISR: Revalidate this page every 60 seconds
-export const revalidate = 60;
+// Force dynamic rendering - skip SSG to avoid build-time API fetch issues
+export const dynamic = 'force-dynamic';
 
 export default async function YellowBooksPage({
   searchParams,

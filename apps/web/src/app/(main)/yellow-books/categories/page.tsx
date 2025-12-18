@@ -3,8 +3,8 @@ import CategoriesSearch from './_components/categories-search';
 
 import { Suspense } from 'react';
 
-// Revalidate this route every 60 seconds (ISR)
-export const revalidate = 60;
+// Force dynamic rendering - skip SSG to avoid build-time API fetch issues
+export const dynamic = 'force-dynamic';
 export default function HomePage() {
   return (
     <div className="">

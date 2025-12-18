@@ -5,10 +5,9 @@ import TryOurBusiness from '../_components/try-our-business';
 import BestInCategories from '../_components/best-in-categories';
 import { Suspense } from 'react';
 
-// ISR: Revalidate this page every 60 seconds
-// This allows the page to be statically generated at build time
-// but refreshed in the background every 60 seconds for fresh data
-export const revalidate = 60;
+// Force dynamic rendering - skip SSG to avoid build-time API fetch issues
+// The page will be rendered on each request with fresh data
+export const dynamic = 'force-dynamic';
 
 export default function HomePage() {
   return (
