@@ -3,14 +3,12 @@
  * Implements RAG (Retrieval-Augmented Generation) for semantic business search
  */
 
-import { PrismaClient } from '@businessdirectory/database';
+import { prisma } from '../utils/prisma';
 import { embedText } from '../utils/embed-client';
 import { cacheService } from '../utils/redis';
 import { logger } from '../utils/logger';
 import CryptoJS from 'crypto-js';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-
-const prisma = new PrismaClient();
 
 type ChatProvider = 'openai' | 'gemini';
 
@@ -277,7 +275,7 @@ export class AiSearchService {
       const scored = candidates
         .filter((c) => c.embedding !== null)
         .map((c) => {
-          const embedding = (c.embedding as unknown) as number[];
+          const embedding = c.embedding as unknown as number[];
           const score = cosineSimilarity(queryEmbedding, embedding);
 
           // Extract district from address
