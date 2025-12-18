@@ -1,63 +1,41 @@
 # Dependencies
 node_modules
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
-.pnpm-debug.log*
 
-# Build outputs
+# Build outputs (generated inside container)
 dist
 .next
 out
 build
-*.tsbuildinfo
 
-# Development files
-.env.local
-.env.development
-.env.test
-*.log
-logs
-*.log.*
-
-# IDE and editor files
+# IDE / OS
 .vscode
 .idea
 *.swp
 *.swo
 *~
 .DS_Store
+Thumbs.db
 
-# Testing
-coverage
-.nyc_output
-*.test.ts
-*.test.tsx
-*.spec.ts
-*.spec.tsx
-
-# Misc
+# Git
 .git
 .gitignore
-README.md
-.eslintrc*
-.prettierrc*
-.editorconfig
+.github
+
+# Tests
+coverage
+.nyc_output
+__tests__
+**/*.test.*
+**/*.spec.*
 
 # Nx
-.nx/cache
-.nx/workspace-data
-
-# Prisma generated (will be regenerated in build)
-libs/database/src/generated
+.nx
+tmp
 
 # Docker
 Dockerfile*
-.dockerignore
 docker-compose*.yml
 
-# Performance logs
-perf-log
-perf.md
-
+# Logs
+logs
+*.log

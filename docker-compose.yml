@@ -1,78 +1,52 @@
-version: '3.8'
+# Docker Compose for Business Directory
+# Local development and testing
 
 services:
-  # MySQL Database
-  database:
-    image: mysql:8.0
-    container_name: businessdirectory-db
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpassword}
-      MYSQL_DATABASE: ${DB_NAME:-businessdirectory}
-      MYSQL_USER: ${DB_USER:-appuser}
-      MYSQL_PASSWORD: ${DB_PASSWORD:-apppassword}
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: businessdirectory-redis
     ports:
-      - "${DB_PORT:-3306}:3306"
+      - '${REDIS_PORT:-6379}:6379'
     volumes:
-      - db_data:/var/lib/mysql
+      - redis_data:/data
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-rootpassword}"]
+      test: ['CMD', 'redis-cli', 'ping']
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - app-network
 
-  # API Service
+  # Backend API
   api:
     build:
       context: .
-      dockerfile: apps/api/Dockerfile
+      dockerfile: Dockerfile.backend
     container_name: businessdirectory-api
-    restart: unless-stopped
+    env_file:
+      - .env
     ports:
-      - "${BACKEND_PORT:-3333}:3333"
-    environment:
-      NODE_ENV: production
-      DATABASE_URL: mysql://${DB_USER:-appuser}:${DB_PASSWORD:-apppassword}@database:3306/${DB_NAME:-businessdirectory}
-      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
-      BACKEND_PORT: 3333
-      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
+      - '3333:3333'
     depends_on:
-      database:
+      redis:
         condition: service_healthy
-    networks:
-      - app-network
     volumes:
-      - api_logs:/app/apps/api/logs
+      - ./apps/api/uploads:/app/uploads
+    restart: unless-stopped
 
-  # Web Service (Next.js)
+  # Frontend Web
   web:
     build:
       context: .
-      dockerfile: apps/web/Dockerfile
+      dockerfile: Dockerfile.frontend
     container_name: businessdirectory-web
-    restart: unless-stopped
+    env_file:
+      - .env
     ports:
-      - "${FRONTEND_PORT:-3000}:3000"
-    environment:
-      NODE_ENV: production
-      PORT: 3000
-      HOSTNAME: "0.0.0.0"
-      # This is used in the browser, so it must be an external URL
-      NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL:-http://localhost:3333}
+      - '3000:3000'
     depends_on:
       - api
-    networks:
-      - app-network
+    restart: unless-stopped
 
 volumes:
-  db_data:
+  redis_data:
     driver: local
-  api_logs:
-    driver: local
-
-networks:
-  app-network:
-    driver: bridge
-
