@@ -1,7 +1,7 @@
 # Business Directory
 
 A full-stack business directory application built with an **Nx monorepo** architecture, combining a **SOLID-based Express API** and a **Next.js frontend** with shared libraries for type-safe database and schema management.
-
+(Features eslint-checked AI Rag search, workers, github oauth (in backend), docker images on ECR)
 ## Architecture
 
 ### Monorepo Structure
